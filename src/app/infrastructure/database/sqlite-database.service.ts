@@ -1,5 +1,12 @@
 import { Injectable } from '@angular/core';
-import initSqlJs, { Database } from 'sql.js';
+import type { Database } from 'sql.js';
+
+// Declaração global para o sql.js carregado via CDN
+declare global {
+  interface Window {
+    initSqlJs: any;
+  }
+}
 
 /**
  * Serviço de banco de dados SQLite
@@ -26,7 +33,19 @@ export class SqliteDatabaseService {
    */
   private async initialize(): Promise<void> {
     try {
-      const SQL = await initSqlJs({
+      // Aguarda o sql.js estar disponível
+      if (typeof window.initSqlJs === 'undefined') {
+        await new Promise((resolve) => {
+          const checkSqlJs = setInterval(() => {
+            if (typeof window.initSqlJs !== 'undefined') {
+              clearInterval(checkSqlJs);
+              resolve(true);
+            }
+          }, 100);
+        });
+      }
+
+      const SQL = await window.initSqlJs({
         locateFile: (file: string) => `https://sql.js.org/dist/${file}`
       });
 
