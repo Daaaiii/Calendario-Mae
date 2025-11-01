@@ -80,7 +80,7 @@ O projeto está configurado para deploy automático no GitHub Pages via GitHub A
 3. **Acompanhar deploy:**
    - Vá na aba "Actions" do repositório
    - O workflow "Deploy to GitHub Pages" será executado automaticamente
-   - Após conclusão, acesse: `https://[seu-usuario].github.io/calendario-mae1/`
+   - Após conclusão, acesse: `https://[seu-usuario].github.io/Calendario-Mae/`
 
 ### Arquivos de configuração do deploy
 
@@ -92,17 +92,17 @@ O projeto está configurado para deploy automático no GitHub Pages via GitHub A
 
 ### Como funciona
 
-1. **GitHub Actions** detecta push na branch master
+1. **GitHub Actions** detecta push na branch main
 2. Instala dependências (`npm ci`)
-3. Faz build com base-href correto (`--base-href /calendario-mae1/`)
+3. Faz build com base-href correto (`--base-href /Calendario-Mae/`)
 4. Faz upload dos arquivos em `dist/calendario-mae1/browser`
 5. Deploy automático no GitHub Pages
 
 ### Solução de problemas
 
 **Assets não carregam:**
-- Verifique se o base-href está correto no workflow: `/calendario-mae1/`
-- Confirme que o nome do repositório é `calendario-mae1`
+- Verifique se o base-href está correto no workflow: `/Calendario-Mae/`
+- Confirme que o nome do repositório é `Calendario-Mae`
 
 **Rotas não funcionam (404):**
 - Verifique se `404.html` e `.nojekyll` estão no diretório `public/`

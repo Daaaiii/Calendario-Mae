@@ -33,13 +33,10 @@ jobs:
       - name: Build
         run: npm run build -- --base-href /Calendario-Mae/
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
-
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './dist/Calendario-Mae/browser'
+          path: './dist/calendario-mae1/browser'
 
   deploy:
     environment:
