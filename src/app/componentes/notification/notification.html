@@ -1,0 +1,13 @@
+@if (isVisible()) {
+  <div class="notification-overlay" (click)="close()">
+    <div class="notification-modal" [class]="'notification-' + type()" (click)="$event.stopPropagation()">
+      <div class="notification-icon">
+        {{ getIcon() }}
+      </div>
+      <div class="notification-content">
+        <p>{{ message() }}</p>
+      </div>
+      <button class="notification-close" (click)="close()" title="Fechar">✕</button>
+    </div>
+  </div>
+}

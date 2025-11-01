@@ -1,0 +1,38 @@
+/**
+ * Dados de seed para o banco de dados
+ */
+export const SEED_DATA = [
+  { title: 'Reviver Nova Esperança do Sul', date: '2025-11-30' },
+  { title: 'Reviver Nova Esperança do Sul', date: '2026-04-26' },
+  { title: 'Reviver Nova Esperança do Sul', date: '2026-08-23' },
+  { title: 'Reviver Nova Esperança do Sul', date: '2026-11-29' },
+  { title: 'Sempre Jovem Uruguaiana - ATAPUR', date: '2025-12-07' },
+  { title: 'Festiva Chapadão', date: '2026-01-18' },
+  { title: 'Alegria de Viver Bossoroca', date: '2025-11-09' },
+  { title: 'Alegria de Viver Bossoroca', date: '2026-03-08' },
+  { title: 'Alegria de Viver Bossoroca', date: '2026-11-08' },
+  { title: 'Renascer Quevedo', date: '2025-11-23' },
+  { title: 'Renascer Quevedo', date: '2026-05-24' },
+  { title: 'Renascer Quevedo', date: '2026-11-22' },
+  { title: 'Amor a Vida Jaguari', date: '2026-03-22' },
+  { title: 'Amor a Vida Jaguari', date: '2026-07-05' },
+  { title: 'Amor a Vida Jaguari', date: '2026-10-25' },
+  { title: 'Viver a Vida São Vicente do Sul', date: '2026-01-25' },
+  { title: 'Viver a Vida São Vicente do Sul', date: '2026-06-07' },
+  { title: 'Viver a Vida São Vicente do Sul', date: '2026-12-06' },
+  { title: 'A Vida é para ser Vivida São Gabriel', date: '2025-11-16' },
+  { title: 'A Vida é para ser Vivida São Gabriel', date: '2026-06-14' },
+  { title: 'A Vida é para ser Vivida São Gabriel', date: '2026-10-11' },
+  { title: 'Raízes de Pedra Mata', date: '2025-11-16' },
+  { title: 'Paz e Amor São Pedro do Sul', date: '2026-12-07' },
+  { title: 'Renascer São Francisco de Assis', date: '2025-11-23' },
+  { title: 'Renascer São Francisco de Assis', date: '2026-04-12' },
+  { title: 'Renascer São Francisco de Assis', date: '2026-08-02' },
+  { title: 'Renascer São Francisco de Assis', date: '2026-11-08' },
+  { title: 'Anita Garibaldi Restinga Seca', date: '2025-11-16' },
+  { title: 'Anita Garibaldi Restinga Seca', date: '2026-02-15' },
+  { title: 'Amigos para Viver Alegrete', date: '2026-05-03' },
+  { title: 'Novo Amanhecer Cacequi', date: '2026-07-12' },
+  { title: 'Amigos para Sempre Manuel Viana', date: '2026-03-29' },
+  { title: 'Amigos para Sempre Manuel Viana', date: '2026-10-18' }
+];

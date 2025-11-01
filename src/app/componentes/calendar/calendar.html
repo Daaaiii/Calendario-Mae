@@ -1,0 +1,107 @@
+<div class="calendar-container">
+
+  <header>
+    <div class="header-title">
+      <h1>📅 Agenda Mensal</h1>
+      <div class="month-display">{{ currentDate() | date: 'MMMM yyyy' : '' : 'pt-BR' }}</div>
+    </div>
+    <div class="header-actions">
+      <div class="navigation-buttons">
+        <button class="nav-btn" (click)="previousMonth()" title="Mês anterior">←</button>
+        <button class="nav-btn today-btn" (click)="goToToday()" title="Ir para hoje">Hoje</button>
+        <button class="nav-btn" (click)="nextMonth()" title="Próximo mês">→</button>
+      </div>
+
+      <!-- Botões de autenticação -->
+      <div class="auth-buttons">
+        @if (authStateManager.isAuthenticated()) {
+          <div class="user-info">
+            <span class="user-badge">👤 {{ authStateManager.currentUser()?.username }}</span>
+            <button class="btn-logout" (click)="logout()" title="Sair">Sair</button>
+          </div>
+        } @else {
+          <button class="btn-login" (click)="goToLogin()" title="Login de administrador">
+            🔐 Login Admin
+          </button>
+        }
+      </div>
+    </div>
+  </header>
+
+  <!-- Legenda de cores -->
+  <div class="legend">
+    <div class="legend-title">Legenda:</div>
+    <div class="legend-items">
+      <div class="legend-item">
+        <span class="legend-color activity-color"></span>
+        <span class="legend-label">Atividades</span>
+      </div>
+      <div class="legend-item">
+        <span class="legend-color holiday-national"></span>
+        <span class="legend-label">Feriados Nacionais</span>
+      </div>
+      <div class="legend-item">
+        <span class="legend-color holiday-religious"></span>
+        <span class="legend-label">Feriados Religiosos</span>
+      </div>
+      <div class="legend-item">
+        <span class="legend-color holiday-optional"></span>
+        <span class="legend-label">Pontos Facultativos</span>
+      </div>
+      <div class="legend-item">
+        <span class="legend-color holiday-state"></span>
+        <span class="legend-label">Feriados Estaduais (RS)</span>
+      </div>
+    </div>
+  </div>
+
+  @if (isLoading()) {
+    <div>
+      <p>Carregando calendário...</p>
+    </div>
+  }
+
+  @if (!isLoading()) {
+    <div>
+      <mwl-calendar-month-view
+        [viewDate]="currentDate()"
+        [events]="calendarEvents()"
+        [activeDayIsOpen]="activeDayIsOpen"
+        [locale]="locale"
+        [refresh]="refresh$"
+        (dayClicked)="handleDayClick({ date: $event.day.date, events: $event.day.events })"
+        (eventClicked)="handleEventClick($event)"
+      >
+      </mwl-calendar-month-view>
+
+      <!-- Preview dos eventos do dia -->
+      @if (activeDayIsOpen && openDayEvents.length > 0) {
+        <div class="day-events-preview">
+          <h3>Eventos do dia</h3>
+          <div class="events-list">
+            @for (event of openDayEvents; track event.meta?.activityId) {
+              <div class="event-item" (click)="handleEventClick({ event: event })">
+                <span class="event-title">{{ event.title }}</span>
+                <span class="event-edit-hint">Clique para editar</span>
+              </div>
+            }
+          </div>
+          <button class="add-event-btn" (click)="addNewEventToDay(openDayEvents[0].start)">
+            + Adicionar outro evento
+          </button>
+        </div>
+      }
+    </div>
+  }
+
+  @if (selectedActivity()) {
+    <app-activity
+      [activity]="selectedActivity()!"
+      (save)="onActivitySave($event)"
+      (delete)="onActivityDelete($event)"
+      (cancel)="closeForm()"
+    >
+    </app-activity>
+  }
+
+</div>

@@ -1,0 +1,70 @@
+<div class="activity-form-overlay" (click)="onOverlayClick($event)">
+  <div class="activity-form-modal" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h2>
+        @if (authStateManager.isAdmin()) {
+          {{ editedActivity.title ? 'Editar Atividade' : 'Nova Atividade' }}
+        } @else {
+          Evento
+        }
+      </h2>
+      <button type="button" class="close-button" (click)="onCancel()" title="Fechar">✕</button>
+    </div>
+
+    <form (ngSubmit)="onSave()">
+      <div class="form-group">
+        <label for="date">📅 Data</label>
+        <input
+          id="date"
+          type="date"
+          [(ngModel)]="editedActivity.date"
+          name="date"
+          required
+          readonly
+          [disabled]="!authStateManager.isAdmin()"
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="title">✨ Título</label>
+        <input
+          id="title"
+          type="text"
+          [(ngModel)]="editedActivity.title"
+          name="title"
+          required
+          placeholder="Ex: Baile em Nova Esperança"
+          [disabled]="!authStateManager.isAdmin()"
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="description">📄 Descrição</label>
+        <textarea
+          id="description"
+          [(ngModel)]="editedActivity.description"
+          name="description"
+          rows="4"
+          placeholder="Adicione detalhes sobre a atividade..."
+          [disabled]="!authStateManager.isAdmin()"
+        ></textarea>
+      </div>
+
+      @if (authStateManager.isAdmin()) {
+        <div class="form-actions">
+          <div class="primary-actions">
+            <button type="submit" class="save-button">💾 Salvar</button>
+            <button type="button" class="cancel-button" (click)="onCancel()">Cancelar</button>
+          </div>
+          @if (activity.title) {
+            <button type="button" class="delete-button" (click)="onDelete()">🗑️ Excluir</button>
+          }
+        </div>
+      } @else {
+        <div class="form-actions">
+          <button type="button" class="cancel-button" (click)="onCancel()">Fechar</button>
+        </div>
+      }
+    </form>
+  </div>
+</div>

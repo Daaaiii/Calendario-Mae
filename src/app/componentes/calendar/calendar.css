@@ -1,0 +1,861 @@
+.calendar-container {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+/* Legenda de cores */
+.legend {
+  padding: 1rem 0;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.legend-title {
+  font-weight: 600;
+  color: #495057;
+  font-size: 0.95rem;
+}
+
+.legend-items {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.legend-color {
+  width: 20px;
+  height: 20px;
+  border-radius: 3px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.legend-color.activity-color {
+  background-color: #3788d8;
+}
+
+.legend-color.holiday-national {
+  background-color: #dc3545;
+}
+
+.legend-color.holiday-religious {
+  background-color: #ffc107;
+}
+
+.legend-color.holiday-optional {
+  background-color: #6c757d;
+}
+
+.legend-color.holiday-state {
+  background-color: #17a2b8;
+}
+
+.legend-label {
+  font-size: 0.875rem;
+  color: #6c757d;
+  white-space: nowrap;
+}
+
+.header-title {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+header h1 {
+  font-size: 28px;
+  color: #333;
+  margin: 0;
+}
+
+.month-display {
+  font-size: 25px;
+  color: #666;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.header-actions {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.navigation-buttons {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* Botões de autenticação */
+.auth-buttons {
+  display: flex;
+  align-items: center;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-badge {
+  background-color: #e3f2fd;
+  color: #1976d2;
+  padding: 8px 15px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.btn-login,
+.btn-logout {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+
+.btn-login {
+  background-color: #667eea;
+  color: white;
+}
+
+.btn-login:hover {
+  background-color: #5568d3;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(102, 126, 234, 0.3);
+}
+
+.btn-logout {
+  background-color: #dc3545;
+  color: white;
+}
+
+.btn-logout:hover {
+  background-color: #c82333;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(220, 53, 69, 0.3);
+}
+
+.nav-btn {
+  padding: 10px 20px;
+  background-color: #1e90ff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all 0.3s;
+  min-width: 45px;
+}
+
+.nav-btn:hover {
+  background-color: #1873cc;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(30, 144, 255, 0.3);
+}
+
+.nav-btn:active {
+  transform: translateY(0);
+}
+
+.today-btn {
+  padding: 10px 20px;
+  min-width: auto;
+}
+
+/* Estilos customizados para o calendário */
+:host ::ng-deep .cal-month-view {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+:host ::ng-deep .cal-month-view .cal-header {
+  background-color: #f8f9fa;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+:host ::ng-deep .cal-month-view .cal-header .cal-cell {
+  padding: 15px 5px;
+  font-weight: 600;
+  color: #555;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+:host ::ng-deep .cal-month-view .cal-days {
+  border-top: none;
+}
+
+:host ::ng-deep .cal-month-view .cal-day-cell {
+  min-height: 100px;
+  border: 1px solid #e0e0e0;
+  transition: background-color 0.2s;
+}
+
+:host ::ng-deep .cal-month-view .cal-day-cell:hover {
+  background-color: #f0f7ff;
+  cursor: pointer;
+}
+
+:host ::ng-deep .cal-month-view .cal-day-number {
+  font-size: 14px;
+  font-weight: 500;
+  margin: 8px;
+  color: #333;
+}
+
+:host ::ng-deep .cal-month-view .cal-day-cell.cal-today {
+  background-color: #e3f2fd;
+}
+
+:host ::ng-deep .cal-month-view .cal-day-cell.cal-today .cal-day-number {
+  background-color: #1e90ff;
+  color: white;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 8px auto;
+}
+
+:host ::ng-deep .cal-month-view .cal-day-cell.cal-out-month {
+  background-color: #fafafa;
+  opacity: 0.5;
+}
+
+:host ::ng-deep .cal-month-view .cal-day-cell.cal-weekend .cal-day-number {
+  color: #d32f2f;
+}
+
+:host ::ng-deep .cal-month-view .cal-events {
+  margin: 3px 5px 5px 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+:host ::ng-deep .cal-month-view .cal-event {
+  padding: 10px 20px;
+  margin-bottom: 0;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: white;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+:host ::ng-deep .cal-month-view .cal-event:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilos específicos para feriados */
+:host ::ng-deep .cal-month-view .holiday-event {
+  font-weight: 600;
+  font-style: italic;
+}
+
+:host ::ng-deep .cal-month-view .holiday-event:before {
+  content: '🎉 ';
+}
+
+/* Cores para feriados nacionais (vermelho) */
+:host ::ng-deep .cal-event[style*="rgb(220, 53, 69)"] {
+  background-color: #dc3545 !important;
+  border-left: 3px solid #bd2130;
+}
+
+/* Cores para feriados religiosos (amarelo/dourado) */
+:host ::ng-deep .cal-event[style*="rgb(255, 193, 7)"] {
+  background-color: #ffc107 !important;
+  color: #333 !important;
+  border-left: 3px solid #e0a800;
+}
+
+/* Cores para feriados opcionais (cinza) */
+:host ::ng-deep .cal-event[style*="rgb(108, 117, 125)"] {
+  background-color: #6c757d !important;
+  border-left: 3px solid #545b62;
+}
+
+/* Cores para feriados estaduais (azul turquesa) */
+:host ::ng-deep .cal-event[style*="rgb(23, 162, 184)"] {
+  background-color: #17a2b8 !important;
+  border-left: 3px solid #117a8b;
+}
+
+:host ::ng-deep .cal-month-view .cal-day-badge {
+  display: none;
+}
+
+:host ::ng-deep .cal-month-view .cal-cell-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  min-height: 24px;
+}
+
+/* Estilos para o dia expandido (activeDayIsOpen) */
+:host ::ng-deep .cal-open-day-events {
+  padding: 10px;
+  background-color: #f8f9fa;
+  border-top: 2px solid #1e90ff;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+:host ::ng-deep .cal-open-day-events .cal-event {
+  margin: 5px 0;
+  padding: 10px 20px;
+  background-color: white;
+  border-left: 4px solid #1e90ff;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+:host ::ng-deep .cal-open-day-events .cal-event:hover {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  transform: translateX(2px);
+}
+
+:host ::ng-deep .cal-open-day-events .cal-event-title {
+  font-weight: 600;
+  color: #333;
+  font-size: 14px;
+}
+
+/* Mensagem de carregamento */
+.calendar-container > div {
+  text-align: center;
+  padding: 40px;
+  color: #666;
+  font-size: 16px;
+}
+
+/* Preview dos eventos do dia */
+.day-events-preview {
+  margin-top: 20px;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+}
+
+.day-events-preview h3 {
+  margin: 0 0 15px 0;
+  font-size: 18px;
+  color: #333;
+  font-weight: 600;
+}
+
+.events-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.event-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.event-item:hover {
+  background: #f0f0f0;
+  border-color: #4228c5ff;
+  transform: translateX(4px);
+}
+
+.event-title {
+  font-weight: 500;
+  color: #333;
+  font-size: 15px;
+}
+
+.event-edit-hint {
+  font-size: 12px;
+  color: #666;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.event-item:hover .event-edit-hint {
+  opacity: 1;
+}
+
+.add-event-btn {
+  width: 100%;
+  padding: 12px;
+  background: #4228c5ff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.add-event-btn:hover {
+  background: #3520a0;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(66, 40, 197, 0.3);
+}
+
+.add-event-btn:active {
+  transform: translateY(0);
+}
+
+/* Responsividade Mobile */
+@media (max-width: 768px) {
+  .calendar-container {
+    margin: 0;
+    padding: 8px 5px 5px 5px;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  header {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+    margin-bottom: 8px;
+    padding-bottom: 10px;
+  }
+
+  .header-title {
+    width: 100%;
+  }
+
+  header h1 {
+    font-size: 20px;
+  }
+
+  .month-display {
+    font-size: 15px;
+  }
+
+  .header-actions {
+    width: 100%;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .navigation-buttons {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .auth-buttons {
+    width: 100%;
+  }
+
+  .user-info {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .user-badge {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+
+  .btn-login,
+  .btn-logout {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+
+  .nav-btn {
+    padding: 8px 15px;
+    font-size: 14px;
+    min-width: 40px;
+  }
+
+  .today-btn {
+    flex: 1;
+    max-width: 100px;
+  }
+
+  /* Ajustes no calendário para mobile */
+  :host ::ng-deep .cal-month-view {
+    border: none;
+  }
+
+  :host ::ng-deep .cal-month-view .cal-day-cell {
+    min-height: 100px;
+    border: 1px solid #ddd;
+  }
+
+  :host ::ng-deep .cal-month-view .cal-header .cal-cell {
+    padding: 10px 2px;
+    font-size: 11px;
+  }
+
+  :host ::ng-deep .cal-month-view .cal-day-number {
+    font-size: 16px;
+    margin: 6px;
+    font-weight: 600;
+  }
+
+  :host ::ng-deep .cal-month-view .cal-events {
+    margin: 2px 4px 4px 4px;
+  }
+
+  :host ::ng-deep .cal-month-view .cal-event {
+    font-size: 10px;
+    padding: 10px 20px;
+    font-weight: 500;
+    line-height: 1.2;
+  }
+
+  :host ::ng-deep .cal-month-view .cal-day-cell.cal-today .cal-day-number {
+    width: 32px;
+    height: 32px;
+    font-size: 15px;
+  }
+
+  /* Ajustes no preview expandido para mobile */
+  :host ::ng-deep .cal-open-day-events {
+    padding: 8px;
+  }
+
+  :host ::ng-deep .cal-open-day-events .cal-event {
+    padding: 10px 20px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .calendar-container {
+    margin: 0;
+    padding: 5px 3px 3px 3px;
+  }
+
+    .calendar-container > div{
+    padding:20px;
+  }
+
+  header {
+    margin-bottom: 6px;
+    padding-bottom: 8px;
+    gap: 8px;
+  }
+
+  header h1 {
+    font-size: 18px;
+  }
+
+  .month-display {
+    font-size: 14px;
+  }
+
+  .nav-btn {
+    padding: 6px 10px;
+    font-size: 12px;
+    min-width: 35px;
+  }
+
+  .today-btn {
+    max-width: 80px;
+    padding: 6px 8px;
+  }
+
+  :host ::ng-deep .cal-month-view .cal-day-cell {
+    min-height: 90px;
+    border: 0.5px solid #ddd;
+  }
+
+  :host ::ng-deep .cal-month-view .cal-header .cal-cell {
+    padding: 8px 1px;
+    font-size: 10px;
+  }
+
+  :host ::ng-deep .cal-month-view .cal-day-number {
+    font-size: 15px;
+    margin: 5px;
+    font-weight: 600;
+  }
+
+  :host ::ng-deep .cal-month-view .cal-events {
+    margin: 2px 3px 3px 3px;
+  }
+
+  :host ::ng-deep .cal-month-view .cal-event {
+    font-size: 9px;
+    padding: 10px 20px;
+    font-weight: 500;
+    line-height: 1.2;
+  }
+
+  :host ::ng-deep .cal-month-view .cal-day-cell.cal-today .cal-day-number {
+    width: 30px;
+    height: 30px;
+    font-size: 14px;
+  }
+
+  /* Ajustes no preview expandido para mobile */
+  :host ::ng-deep .cal-open-day-events {
+    padding: 6px;
+  }
+
+  :host ::ng-deep .cal-open-day-events .cal-event {
+    padding: 10px 20px;
+    font-size: 11px;
+  }
+
+  /* Ajustes na legenda para mobile */
+  .legend {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.75rem 0;
+  }
+
+  .legend-items {
+    gap: 1rem;
+  }
+
+  .legend-item {
+    gap: 0.4rem;
+  }
+
+  .legend-label {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 375px) {
+  .calendar-container {
+    margin: 0;
+    padding: 4px 2px 2px 2px;
+  }
+  .calendar-container > div{
+    padding:10px;
+  }
+
+  header {
+    gap: 6px;
+    margin-bottom: 5px;
+    padding-bottom: 6px;
+  }
+
+  header h1 {
+    font-size: 16px;
+  }
+
+  .month-display {
+    font-size: 13px;
+  }
+
+  .navigation-buttons {
+    gap: 5px;
+  }
+
+  .nav-btn {
+    padding: 5px 8px;
+    font-size: 11px;
+    min-width: 30px;
+  }
+
+  .today-btn {
+    max-width: 70px;
+    padding: 5px 6px;
+  }
+
+  /* Ajustes na legenda para telas muito pequenas */
+  .legend {
+    padding: 0.5rem 0;
+    margin-bottom: 10px;
+  }
+
+  .legend-title {
+    font-size: 0.85rem;
+  }
+
+  .legend-items {
+    gap: 0.75rem;
+  }
+
+  .legend-color {
+    width: 16px;
+    height: 16px;
+  }
+
+  .legend-label {
+    font-size: 0.75rem;
+  }
+
+  :host ::ng-deep .cal-month-view .cal-day-cell {
+    min-height: 85px;
+    border: 0.5px solid #ddd;
+  }
+
+  :host ::ng-deep .cal-month-view .cal-header .cal-cell {
+    padding: 7px 1px;
+    font-size: 9px;
+  }
+
+  :host ::ng-deep .cal-month-view .cal-day-number {
+    font-size: 14px;
+    margin: 4px;
+    font-weight: 600;
+  }
+
+  :host ::ng-deep .cal-month-view .cal-events {
+    margin: 2px;
+  }
+
+  :host ::ng-deep .cal-month-view .cal-event {
+    font-size: 8px;
+    padding: 2px;
+    font-weight: 500;
+    line-height: 1.1;
+  }
+
+  :host ::ng-deep .cal-month-view .cal-day-cell.cal-today .cal-day-number {
+    width: 28px;
+    height: 28px;
+    font-size: 13px;
+  }
+
+  /* Ajustes no preview expandido para mobile */
+  :host ::ng-deep .cal-open-day-events {
+    padding: 5px;
+  }
+
+  :host ::ng-deep .cal-open-day-events .cal-event {
+    padding: 10px 20px;
+    font-size: 10px;
+  }
+}
+
+/* Para telas muito pequenas como 320px */
+@media (max-width: 320px) {
+  body {
+    font-size: 14px;
+  }
+
+  .calendar-container {
+    margin: 0;
+    padding: 3px 1px 1px 1px;
+  }
+
+  header {
+    gap: 5px;
+    margin-bottom: 4px;
+    padding-bottom: 5px;
+  }
+
+  header h1 {
+    font-size: 14px;
+  }
+
+  .month-display {
+    font-size: 12px;
+  }
+
+  .navigation-buttons {
+    gap: 3px;
+  }
+
+  .nav-btn {
+    padding: 4px 6px;
+    font-size: 10px;
+    min-width: 28px;
+  }
+
+  .today-btn {
+    max-width: 60px;
+    padding: 4px 5px;
+  }
+  :host ::ng-deep .cal-month-view .cal-day-cell {
+    min-height: 75px;
+    border: 0.5px solid #ddd;
+  }
+
+  :host ::ng-deep .cal-month-view .cal-header .cal-cell {
+    padding: 6px 0;
+    font-size: 8px;
+  }
+
+  :host ::ng-deep .cal-month-view .cal-day-number {
+    font-size: 13px;
+    margin: 3px;
+    font-weight: 600;
+  }
+
+  :host ::ng-deep .cal-month-view .cal-events {
+    margin: 1px 2px 2px 2px;
+  }
+
+  :host ::ng-deep .cal-month-view .cal-event {
+    font-size: 7px;
+    padding: 10px 15px;
+    margin-bottom: 1px;
+    font-weight: 500;
+    line-height: 1.1;
+  }
+
+  :host ::ng-deep .cal-month-view .cal-day-cell.cal-today .cal-day-number {
+    width: 26px;
+    height: 26px;
+    font-size: 12px;
+  }
+
+  /* Ajustes no preview expandido para mobile */
+  :host ::ng-deep .cal-open-day-events {
+    padding: 4px;
+  }
+
+  :host ::ng-deep .cal-open-day-events .cal-event {
+    padding: 10px 15px;
+    font-size: 9px;
+  }
+}

@@ -1,0 +1,124 @@
+.confirmation-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.confirmation-modal {
+  background: white;
+  border-radius: 16px;
+  padding: 0;
+  max-width: 450px;
+  width: 90%;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: slideUp 0.3s ease-out;
+}
+
+.confirmation-header {
+  padding: 32px 32px 24px;
+  text-align: center;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.confirmation-icon {
+  font-size: 64px;
+  margin-bottom: 16px;
+  animation: pulse 0.5s ease-in-out;
+}
+
+.confirmation-header h2 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+}
+
+.confirmation-content {
+  padding: 24px 32px;
+  text-align: center;
+}
+
+.confirmation-content p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #666;
+}
+
+.confirmation-actions {
+  padding: 24px 32px 32px;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.confirmation-actions button {
+  flex: 1;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 120px;
+}
+
+.btn-cancel {
+  background: #f5f5f5;
+  color: #666;
+}
+
+.btn-cancel:hover {
+  background: #e8e8e8;
+  transform: translateY(-1px);
+}
+
+.btn-confirm {
+  background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+  color: white;
+}
+
+.btn-confirm:hover {
+  background: linear-gradient(135deg, #c0392b 0%, #a93226 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}

@@ -1,0 +1,24 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* Importar os estilos do angular-calendar */
+@import '../node_modules/angular-calendar/css/angular-calendar.css';
+
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f5f5f5;
+  overflow-x: hidden;
+}
+
+/* Remove margens em mobile */
+@media (max-width: 768px) {
+  body {
+    background-color: #fff;
+  }
+}
