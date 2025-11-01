@@ -754,7 +754,7 @@ header h1 {
 
   :host ::ng-deep .cal-month-view .cal-event {
     font-size: 8px;
-    padding: 2px;
+    padding: 10px;
     font-weight: 500;
     line-height: 1.1;
   }
@@ -837,7 +837,7 @@ header h1 {
 
   :host ::ng-deep .cal-month-view .cal-event {
     font-size: 7px;
-    padding: 10px 15px;
+    padding: 10px;
     margin-bottom: 1px;
     font-weight: 500;
     line-height: 1.1;
@@ -851,7 +851,7 @@ header h1 {
 
   /* Ajustes no preview expandido para mobile */
   :host ::ng-deep .cal-open-day-events {
-    padding: 4px;
+    padding: 10px;
   }
 
   :host ::ng-deep .cal-open-day-events .cal-event {
