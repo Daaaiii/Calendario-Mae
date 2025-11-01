@@ -28,33 +28,6 @@
     </div>
   </header>
 
-  <!-- Legenda de cores -->
-  <div class="legend">
-    <div class="legend-title">Legenda:</div>
-    <div class="legend-items">
-      <div class="legend-item">
-        <span class="legend-color activity-color"></span>
-        <span class="legend-label">Atividades</span>
-      </div>
-      <div class="legend-item">
-        <span class="legend-color holiday-national"></span>
-        <span class="legend-label">Feriados Nacionais</span>
-      </div>
-      <div class="legend-item">
-        <span class="legend-color holiday-religious"></span>
-        <span class="legend-label">Feriados Religiosos</span>
-      </div>
-      <div class="legend-item">
-        <span class="legend-color holiday-optional"></span>
-        <span class="legend-label">Pontos Facultativos</span>
-      </div>
-      <div class="legend-item">
-        <span class="legend-color holiday-state"></span>
-        <span class="legend-label">Feriados Estaduais (RS)</span>
-      </div>
-    </div>
-  </div>
-
   @if (isLoading()) {
     <div>
       <p>Carregando calendário...</p>
@@ -93,6 +66,33 @@
       }
     </div>
   }
+
+  <!-- Legenda de cores -->
+  <div class="legend">
+    <div class="legend-title">Legenda:</div>
+    <div class="legend-items">
+      <div class="legend-item">
+        <span class="legend-color activity-color"></span>
+        <span class="legend-label">Atividades</span>
+      </div>
+      <div class="legend-item">
+        <span class="legend-color holiday-national"></span>
+        <span class="legend-label">Feriados Nacionais</span>
+      </div>
+      <div class="legend-item">
+        <span class="legend-color holiday-religious"></span>
+        <span class="legend-label">Feriados Religiosos</span>
+      </div>
+      <div class="legend-item">
+        <span class="legend-color holiday-optional"></span>
+        <span class="legend-label">Pontos Facultativos</span>
+      </div>
+      <div class="legend-item">
+        <span class="legend-color holiday-state"></span>
+        <span class="legend-label">Feriados Estaduais (RS)</span>
+      </div>
+    </div>
+  </div>
 
   @if (selectedActivity()) {
     <app-activity
